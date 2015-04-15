@@ -1,0 +1,68 @@
+<html ng-app="nameApp">
+  <head>
+    <meta charset="utf-8">
+    <title>Angular.js Example</title>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.1/angular.min.js"></script>
+    <script>
+      var nameApp = angular.module('nameApp', []);
+      nameApp.controller('NameCtrl', function ($scope){
+        $scope.square = {
+          inner_side_length: 0,
+          outer_side_length: 0,
+          height: 0
+        };
+
+        $scope.calculate_square1 = function() {
+            $scope.square.area = ($scope.square.outer_side_length * $scope.square.outer_side_length - $scope.square.inner_side_length * $scope.square.inner_side_length);
+            $scope.square.bulk = $scope.square.area * $scope.square.height;
+        };
+
+        $scope.circle = {
+          inner_diameter: 0,
+          outer_diameter: 0,
+          height: 0
+        };
+
+        $scope.calculate_circle1 = function() {
+            $scope.circle.area = ($scope.circle.outer_diameter * $scope.circle.outer_diameter - $scope.circle.inner_diameter * $scope.circle.inner_diameter) * 3.14 / 4;
+            $scope.circle.bulk = $scope.circle.area * $scope.circle.height;
+        };
+      });
+    </script>
+  </head>
+  <body ng-controller="NameCtrl">
+    <h1>Calculator</h1>
+    <div>
+      <h2>Square</h2>
+      <div>
+        Input inner_side_length:<input ng-model="square.inner_side_length" type="text"/>
+        Input outer_side_length:<input ng-model="square.outer_side_length" type="text"/>
+        Input height:<input ng-model="square.height" type="text"/>
+        <button ng-click="calculate_square1()">Calculate_square1</button>
+        <br>
+        inner_side_length = {{square.inner_side_length}}.
+        outer_side_length = {{square.outer_side_length}}.
+        Height = {{square.height}}.
+        Bulk = {{square.bulk}}.
+      </div>
+      <hr>
+
+      <h2>Circle</h2>
+      <div>
+        Input inner_diamater:<input ng-model="circle.inner_diameter" type="text"/>
+        Input outer_diamater:<input ng-model="circle.outer_diameter" type="text"/>
+        Input height:<input ng-model="circle.height" type="text"/>
+        <button ng-click="calculate_circle1()">Calculate_circle1</button>
+        <br>
+        inner_diameter = {{circle.inner_diameter}}.
+        outer_diameter = {{circle.outer_diameter}}.
+        Height = {{circle.height}}.
+        Bulk = {{circle.bulk}}.
+      </div>
+      <hr>
+    </div>
+  </body>
+</html>
+
+
+
