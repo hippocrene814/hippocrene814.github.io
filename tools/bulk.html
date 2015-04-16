@@ -11,7 +11,6 @@
           outer_side_length: 0,
           height: 0
         };
-
         $scope.calculate_square1 = function() {
             $scope.square.area = ($scope.square.outer_side_length * $scope.square.outer_side_length - $scope.square.inner_side_length * $scope.square.inner_side_length);
             $scope.square.bulk = $scope.square.area * $scope.square.height;
@@ -22,11 +21,28 @@
           outer_diameter: 0,
           height: 0
         };
-
         $scope.calculate_circle1 = function() {
             $scope.circle.area = ($scope.circle.outer_diameter * $scope.circle.outer_diameter - $scope.circle.inner_diameter * $scope.circle.inner_diameter) * 3.14 / 4;
             $scope.circle.bulk = $scope.circle.area * $scope.circle.height;
         };
+
+        $scope.circle2 = {
+          upper_inner_diameter: 0,
+          upper_outer_diameter: 0,
+          lower_inner_diameter: 0,
+          lower_outer_diameter: 0,
+          inner_height: 0,
+          outer_height: 0
+        };
+        $scope.calculate_circle2 = function() {
+            $scope.circle2.inner_bulk = ($scope.circle2.upper_inner_diameter * $scope.circle2.upper_inner_diameter + $scope.circle2.lower_inner_diameter * $scope.circle2.lower_inner_diameter + $scope.circle2.lower_inner_diameter * $scope.circle2.upper_inner_diameter) * $scope.circle2.inner_height * 3.14 / 12;
+
+            $scope.circle2.outer_bulk = ($scope.circle2.upper_outer_diameter * $scope.circle2.upper_outer_diameter + $scope.circle2.lower_outer_diameter * $scope.circle2.lower_outer_diameter + $scope.circle2.lower_outer_diameter * $scope.circle2.upper_outer_diameter) * $scope.circle2.outer_height * 3.14 / 12;
+
+            $scope.circle2.bulk = $scope.circle2.outer_bulk - $scope.circle2.inner_bulk;
+
+        };
+
       });
     </script>
   </head>
@@ -35,7 +51,7 @@
     <div>
       <h2>Square</h2>
       <div>
-        Input inner_side_length:<input ng-model="square.inner_side_length" type="text"/>
+        Input outer_side_length:<input ng-model="square.inner_side_length" type="text"/>
         Input outer_side_length:<input ng-model="square.outer_side_length" type="text"/>
         Input height:<input ng-model="square.height" type="text"/>
         <button ng-click="calculate_square1()">Calculate_square1</button>
@@ -43,6 +59,7 @@
         inner_side_length = {{square.inner_side_length}}.
         outer_side_length = {{square.outer_side_length}}.
         Height = {{square.height}}.
+        <br>
         Bulk = {{square.bulk}}.
       </div>
       <hr>
@@ -57,9 +74,34 @@
         inner_diameter = {{circle.inner_diameter}}.
         outer_diameter = {{circle.outer_diameter}}.
         Height = {{circle.height}}.
+        <br>
         Bulk = {{circle.bulk}}.
       </div>
       <hr>
+
+      <h2>Truncated_Cone</h2>
+      <div>
+        Input upper_inner_diameter:<input ng-model="circle2.upper_inner_diameter" type="text"/>
+        Input lower_inner_diameter:<input ng-model="circle2.lower_inner_diameter" type="text"/>
+        Input inner_height:<input ng-model="circle2.inner_height" type="text"/>
+        <br>
+        Input upper_outer_diamater:<input ng-model="circle2.upper_outer_diameter" type="text"/>
+        Input lower_outer_diamater:<input ng-model="circle2.lower_outer_diameter" type="text"/>
+        Input outer_height:<input ng-model="circle2.outer_height" type="text"/>
+        <button ng-click="calculate_circle2()">Calculate_circle2</button>
+        <br>
+        upper_inner_diameter = {{circle2.upper_inner_diameter}}.
+        upper_outer_diameter = {{circle2.upper_outer_diameter}}.
+        lower_inner_diameter = {{circle2.lower_inner_diameter}}.
+        lower_outer_diameter = {{circle2.lower_outer_diameter}}.
+        inner_height = {{circle2.inner_height}}.
+        outer_height = {{circle2.outer_height}}.
+        <br>
+        inner_bulk = {{circle2.inner_bulk}}.
+        outer_bulk = {{circle2.outer_bulk}}.
+        Bulk = {{circle2.bulk}}.
+      </div>
+
     </div>
   </body>
 </html>
