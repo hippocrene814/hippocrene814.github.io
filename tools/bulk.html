@@ -43,6 +43,44 @@
 
         };
 
+        $scope.circle3 = {
+          a_d: 0,
+          a_x1: 0,
+          a_x2: 0,
+          b: 0,
+          r: 0,
+          another_r: 0,
+          k_d_prime: 0,
+          k_x_prime: 0,
+          r_d: 0,
+          r_x: 0
+        };
+
+        $scope.check_circle3 = function() {
+          $scope.circle3.k_d_prime = 2 * 3.14 * $scope.circle3.b / ($scope.circle3.a_d - $scope.circle3.a_x1);
+          $scope.circle3.k_x_prime = 2 * 3.14 * $scope.circle3.b / ($scope.circle3.a_d - $scope.circle3.a_x2);
+
+          $scope.circle3.r_d = $scope.circle3.b * $scope.circle3.a_d / ($scope.circle3.a_d - $scope.circle3.a_x1);
+          $scope.circle3.r_x = $scope.circle3.b * $scope.circle3.a_d / ($scope.circle3.a_d - $scope.circle3.a_x2);
+
+          if ($scope.circle3.r_x < $scope.circle3.r && $scope.circle3.r < $scope.circle3.r_d) {
+            $scope.circle3.k_d = ($scope.circle3.r - $scope.circle3.r_x) / ($scope.circle3.r_d - $scope.circle3.r_x) * $scope.circle3.k_d_prime;
+            $scope.circle3.k_x = ($scope.circle3.r_d - $scope.circle3.r) / ($scope.circle3.r_d - $scope.circle3.r_x) * $scope.circle3.k_x_prime;
+            $scope.circle3.output = $scope.circle3.k_d / $scope.circle3.k_x;
+            $scope.circle3.output_text = 'input another r';
+          } else {
+            $scope.circle3.output = 0;
+            $scope.circle3.output_text = 'input all values';
+          }
+        };
+
+        $scope.check_circle3_2 = function() {
+          $scope.circle3.k_d_2 = ($scope.circle3.another_r - $scope.circle3.r_x) / ($scope.circle3.r_d - $scope.circle3.r_x) * $scope.circle3.k_d_prime;
+          $scope.circle3.k_x_2 = ($scope.circle3.r_d - $scope.circle3.another_r) / ($scope.circle3.r_d - $scope.circle3.r_x) * $scope.circle3.k_x_prime;
+          $scope.circle3.output_2 = $scope.circle3.k_d_2 / $scope.circle3.k_x_2;
+          $scope.circle3.output_text_2 = 'input another r';
+        }
+
       });
     </script>
   </head>
@@ -100,6 +138,33 @@
         inner_bulk = {{circle2.inner_bulk}}.
         outer_bulk = {{circle2.outer_bulk}}.
         Bulk = {{circle2.bulk}}.
+      </div>
+      <hr>
+
+      <h2>Check_Circle</h2>
+      <div>
+        Input a_d:<input ng-model="circle3.a_d" type="text"/>
+        Input a_x1:<input ng-model="circle3.a_x1" type="text"/>
+        Input a_x2:<input ng-model="circle3.a_x2" type="text"/>
+        <br>
+        Input b:<input ng-model="circle3.b" type="text"/>
+        Input r:<input ng-model="circle3.r" type="text"/>
+        <button ng-click="check_circle3()">Check_circle3</button>
+        <br>
+        k_d_prime = {{circle3.k_d_prime}}.
+        k_x_prime = {{circle3.k_x_prime}}.
+        r_d = {{circle3.r_d}}.
+        r_x = {{circle3.r_x}}.
+        <br>
+        output = {{circle3.output}}.
+        output_text = {{circle3.output_text}}.
+        <br>
+        <br>
+        Input another_r:<input ng-model="circle3.another_r" type="text"/>
+        <button ng-click="check_circle3_2()">Check_circle3_2</button>
+        <br>
+        output = {{circle3.output_2}}.
+        output_text = {{circle3.output_text_2}}.
       </div>
 
     </div>
