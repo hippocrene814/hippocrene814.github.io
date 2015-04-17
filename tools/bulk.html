@@ -63,6 +63,9 @@
           $scope.circle3.r_d = $scope.circle3.b * $scope.circle3.a_d / ($scope.circle3.a_d - $scope.circle3.a_x1);
           $scope.circle3.r_x = $scope.circle3.b * $scope.circle3.a_d / ($scope.circle3.a_d - $scope.circle3.a_x2);
 
+          $scope.circle3.k_d = 0;
+          $scope.circle3.k_x = 0;
+
           if ($scope.circle3.r_x < $scope.circle3.r && $scope.circle3.r < $scope.circle3.r_d) {
             $scope.circle3.k_d = ($scope.circle3.r - $scope.circle3.r_x) / ($scope.circle3.r_d - $scope.circle3.r_x) * $scope.circle3.k_d_prime;
             $scope.circle3.k_x = ($scope.circle3.r_d - $scope.circle3.r) / ($scope.circle3.r_d - $scope.circle3.r_x) * $scope.circle3.k_x_prime;
@@ -156,15 +159,19 @@
         r_d = {{circle3.r_d}}.
         r_x = {{circle3.r_x}}.
         <br>
-        output = {{circle3.output}}.
-        output_text = {{circle3.output_text}}.
+        k_d = {{circle3.k_d}}.
+        k_x = {{circle3.k_x}}.
+<!--         output = {{circle3.output}}.
+ -->        output_text = {{circle3.output_text}}.
         <br>
         <br>
         Input another_r:<input ng-model="circle3.another_r" type="text"/>
         <button ng-click="check_circle3_2()">Check_circle3_2</button>
         <br>
-        output = {{circle3.output_2}}.
-        output_text = {{circle3.output_text_2}}.
+        k_d = {{circle3.k_d_2}}.
+        k_x = {{circle3.k_x_2}}.
+<!--         output = {{circle3.output_2}}.
+ -->        output_text = {{circle3.output_text_2}}.
       </div>
 
     </div>
